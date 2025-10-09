@@ -32,3 +32,4 @@ class TableAccess:
 
 @dataclass(frozen=True)
 class QueryAnalysis:
+    statement_type: str
