@@ -35,3 +35,5 @@ class QueryAnalysis:
     statement_type: str
     tables: tuple[TableAccess, ...]
     where_columns: tuple[str, ...]
+    select_columns: tuple[str, ...]
+    has_aggregate: bool
