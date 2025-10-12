@@ -38,3 +38,5 @@ class QueryAnalysis:
     select_columns: tuple[str, ...]
     has_aggregate: bool
     has_group_by: bool
+    has_order_by: bool
+    limit: int | None
