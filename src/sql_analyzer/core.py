@@ -37,3 +37,4 @@ class QueryAnalysis:
     where_columns: tuple[str, ...]
     select_columns: tuple[str, ...]
     has_aggregate: bool
+    has_group_by: bool
