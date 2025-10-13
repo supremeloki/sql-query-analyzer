@@ -40,3 +40,4 @@ class QueryAnalysis:
     has_group_by: bool
     has_order_by: bool
     limit: int | None
+    cte_count: int
