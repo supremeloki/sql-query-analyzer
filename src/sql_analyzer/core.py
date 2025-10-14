@@ -41,3 +41,5 @@ class QueryAnalysis:
     has_order_by: bool
     limit: int | None
     cte_count: int
+    subquery_count: int
+    complexity_score: int
