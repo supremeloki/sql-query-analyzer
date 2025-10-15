@@ -45,3 +45,4 @@ class QueryAnalysis:
     complexity_score: int
     risks: tuple[str, ...] = field(default_factory=tuple)
 
+    @property
