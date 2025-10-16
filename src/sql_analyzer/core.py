@@ -48,3 +48,4 @@ class QueryAnalysis:
     @property
     def is_read_only(self) -> bool:
         return self.statement_type == "SELECT"
+
