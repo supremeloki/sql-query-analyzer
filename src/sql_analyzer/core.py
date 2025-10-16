@@ -46,3 +46,5 @@ class QueryAnalysis:
     risks: tuple[str, ...] = field(default_factory=tuple)
 
     @property
+    def is_read_only(self) -> bool:
+        return self.statement_type == "SELECT"
