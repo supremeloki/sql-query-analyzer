@@ -49,3 +49,5 @@ class QueryAnalysis:
     def is_read_only(self) -> bool:
         return self.statement_type == "SELECT"
 
+
+@dataclass(frozen=True)
