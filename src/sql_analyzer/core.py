@@ -51,3 +51,5 @@ class QueryAnalysis:
 
 
 @dataclass(frozen=True)
+class OptimizationHint:
+    hint: str
