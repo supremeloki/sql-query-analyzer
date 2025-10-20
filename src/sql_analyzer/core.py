@@ -54,3 +54,5 @@ class QueryAnalysis:
 class OptimizationHint:
     hint: str
     detail: str
+
+
