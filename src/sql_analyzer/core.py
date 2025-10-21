@@ -56,3 +56,4 @@ class OptimizationHint:
     detail: str
 
 
+class SqlQueryAnalyzer:
