@@ -57,3 +57,5 @@ class OptimizationHint:
 
 
 class SqlQueryAnalyzer:
+    def __init__(self, dialect: str = "postgres") -> None:
+        self._dialect = dialect
