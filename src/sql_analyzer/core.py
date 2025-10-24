@@ -61,3 +61,4 @@ class SqlQueryAnalyzer:
         self._dialect = dialect
 
     def analyze(self, sql: str) -> QueryAnalysis:
+        try:
