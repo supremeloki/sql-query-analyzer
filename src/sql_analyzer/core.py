@@ -62,3 +62,5 @@ class SqlQueryAnalyzer:
 
     def analyze(self, sql: str) -> QueryAnalysis:
         try:
+            expression = sqlglot.parse_one(sql, read=self._dialect)
+        except Exception as exc:
