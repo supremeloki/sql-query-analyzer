@@ -65,3 +65,5 @@ class SqlQueryAnalyzer:
             expression = sqlglot.parse_one(sql, read=self._dialect)
         except Exception as exc:
             raise AnalyzerError(f"parse failure: {exc}") from exc
+
+        statement_type = type(expression).__name__.upper()
