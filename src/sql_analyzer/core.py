@@ -67,3 +67,5 @@ class SqlQueryAnalyzer:
             raise AnalyzerError(f"parse failure: {exc}") from exc
 
         statement_type = type(expression).__name__.upper()
+        tables = self._collect_tables(expression)
+        where_columns = tuple(sorted({
