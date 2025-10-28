@@ -69,3 +69,4 @@ class SqlQueryAnalyzer:
         statement_type = type(expression).__name__.upper()
         tables = self._collect_tables(expression)
         where_columns = tuple(sorted({
+            col.name for col in expression.find_all(exp.Column)
