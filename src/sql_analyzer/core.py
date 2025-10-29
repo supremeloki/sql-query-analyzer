@@ -70,3 +70,5 @@ class SqlQueryAnalyzer:
         tables = self._collect_tables(expression)
         where_columns = tuple(sorted({
             col.name for col in expression.find_all(exp.Column)
+            if col.find_ancestor(exp.Where)
+        }))
