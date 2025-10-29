@@ -72,3 +72,4 @@ class SqlQueryAnalyzer:
             col.name for col in expression.find_all(exp.Column)
             if col.find_ancestor(exp.Where)
         }))
+        select_columns = tuple(
