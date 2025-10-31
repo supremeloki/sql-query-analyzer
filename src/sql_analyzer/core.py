@@ -75,3 +75,5 @@ class SqlQueryAnalyzer:
         select_columns = tuple(
             col.name for col in expression.find_all(exp.Column)
             if col.find_ancestor(exp.Select) and not col.find_ancestor(exp.Where)
+        )
+        return QueryAnalysis(
