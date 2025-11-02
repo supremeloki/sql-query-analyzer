@@ -77,3 +77,4 @@ class SqlQueryAnalyzer:
             if col.find_ancestor(exp.Select) and not col.find_ancestor(exp.Where)
         )
         return QueryAnalysis(
+            statement_type=statement_type,
