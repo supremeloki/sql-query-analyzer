@@ -78,3 +78,5 @@ class SqlQueryAnalyzer:
         )
         return QueryAnalysis(
             statement_type=statement_type,
+            tables=tuple(tables),
+            where_columns=where_columns,
