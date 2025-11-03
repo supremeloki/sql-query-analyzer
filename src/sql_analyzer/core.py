@@ -80,3 +80,4 @@ class SqlQueryAnalyzer:
             statement_type=statement_type,
             tables=tuple(tables),
             where_columns=where_columns,
+            select_columns=select_columns,
