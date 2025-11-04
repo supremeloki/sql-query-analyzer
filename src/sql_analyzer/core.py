@@ -81,3 +81,5 @@ class SqlQueryAnalyzer:
             tables=tuple(tables),
             where_columns=where_columns,
             select_columns=select_columns,
+            has_aggregate=any(True for _ in expression.find_all(exp.AggFunc)),
+            has_group_by=expression.find(exp.Group) is not None,
