@@ -83,3 +83,5 @@ class SqlQueryAnalyzer:
             select_columns=select_columns,
             has_aggregate=any(True for _ in expression.find_all(exp.AggFunc)),
             has_group_by=expression.find(exp.Group) is not None,
+            has_order_by=expression.find(exp.Order) is not None,
+            limit=self._extract_limit(expression),
