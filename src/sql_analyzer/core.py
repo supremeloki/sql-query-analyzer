@@ -85,3 +85,4 @@ class SqlQueryAnalyzer:
             has_group_by=expression.find(exp.Group) is not None,
             has_order_by=expression.find(exp.Order) is not None,
             limit=self._extract_limit(expression),
+            cte_count=len(list(expression.find_all(exp.CTE))),
