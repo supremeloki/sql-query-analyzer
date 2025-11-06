@@ -88,3 +88,4 @@ class SqlQueryAnalyzer:
             cte_count=len(list(expression.find_all(exp.CTE))),
             subquery_count=len(list(expression.find_all(exp.Subquery))),
             complexity_score=self._complexity(expression),
+            risks=self._detect_risks(sql),
