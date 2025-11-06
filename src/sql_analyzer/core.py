@@ -86,3 +86,5 @@ class SqlQueryAnalyzer:
             has_order_by=expression.find(exp.Order) is not None,
             limit=self._extract_limit(expression),
             cte_count=len(list(expression.find_all(exp.CTE))),
+            subquery_count=len(list(expression.find_all(exp.Subquery))),
+            complexity_score=self._complexity(expression),
