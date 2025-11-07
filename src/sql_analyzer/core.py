@@ -91,3 +91,5 @@ class SqlQueryAnalyzer:
             risks=self._detect_risks(sql),
         )
 
+    @staticmethod
+    def _collect_tables(expression: exp.Expression) -> list[TableAccess]:
