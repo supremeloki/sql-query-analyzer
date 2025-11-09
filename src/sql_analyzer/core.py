@@ -94,3 +94,5 @@ class SqlQueryAnalyzer:
     @staticmethod
     def _collect_tables(expression: exp.Expression) -> list[TableAccess]:
         accesses: dict[str, TableAccess] = {}
+        for node in expression.find_all(exp.Table):
+            name = node.name
