@@ -65,3 +65,4 @@ def test_cte_counted(analyzer):
 
 def test_insert_marks_write_operation(analyzer):
     analysis = analyzer.analyze("INSERT INTO archive SELECT * FROM logs")
+    write_rows = [t for t in analysis.tables if t.operation == "write"]
