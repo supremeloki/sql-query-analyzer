@@ -96,3 +96,4 @@ class SqlQueryAnalyzer:
         accesses: dict[str, TableAccess] = {}
         for node in expression.find_all(exp.Table):
             name = node.name
+            joined = node.find_ancestor(exp.Join) is not None
