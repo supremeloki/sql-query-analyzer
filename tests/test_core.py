@@ -68,3 +68,4 @@ def test_insert_marks_write_operation(analyzer):
     write_rows = [t for t in analysis.tables if t.operation == "write"]
     assert any(t.table == "archive" for t in write_rows)
     assert not analysis.is_read_only
+
