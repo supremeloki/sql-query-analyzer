@@ -69,3 +69,5 @@ def test_insert_marks_write_operation(analyzer):
     assert any(t.table == "archive" for t in write_rows)
     assert not analysis.is_read_only
 
+
+def test_select_star_risk_flagged(analyzer):
