@@ -71,3 +71,4 @@ def test_insert_marks_write_operation(analyzer):
 
 
 def test_select_star_risk_flagged(analyzer):
+    analysis = analyzer.analyze("SELECT * FROM wide_table")
