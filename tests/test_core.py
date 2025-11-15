@@ -74,3 +74,4 @@ def test_select_star_risk_flagged(analyzer):
     analysis = analyzer.analyze("SELECT * FROM wide_table")
     assert "select_star" in analysis.risks
 
+
