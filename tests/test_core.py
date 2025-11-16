@@ -75,3 +75,4 @@ def test_select_star_risk_flagged(analyzer):
     assert "select_star" in analysis.risks
 
 
+def test_parse_failure_raises(analyzer):
