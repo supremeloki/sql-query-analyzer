@@ -78,3 +78,4 @@ def test_select_star_risk_flagged(analyzer):
 def test_parse_failure_raises(analyzer):
     with pytest.raises(AnalyzerError):
         analyzer.analyze("THIS IS NOT SQL AT ALL !!!")
+
