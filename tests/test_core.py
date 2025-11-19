@@ -80,3 +80,4 @@ def test_parse_failure_raises(analyzer):
         analyzer.analyze("THIS IS NOT SQL AT ALL !!!")
 
 
+def test_complexity_scores_ordered():
