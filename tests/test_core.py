@@ -83,3 +83,4 @@ def test_parse_failure_raises(analyzer):
 def test_complexity_scores_ordered():
     simple = SqlQueryAnalyzer().analyze("SELECT a FROM t")
     complex_query = SqlQueryAnalyzer().analyze(
+        """
