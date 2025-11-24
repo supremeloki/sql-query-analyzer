@@ -87,3 +87,4 @@ def test_complexity_scores_ordered():
         WITH c AS (SELECT * FROM base)
         SELECT c.a, x.b, SUM(x.c) OVER (PARTITION BY c.a) AS run
         FROM c JOIN extra x ON x.id = c.id
+        WHERE c.flag = true
