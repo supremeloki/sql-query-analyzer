@@ -89,3 +89,4 @@ def test_complexity_scores_ordered():
         FROM c JOIN extra x ON x.id = c.id
         WHERE c.flag = true
         GROUP BY c.a, x.b
+        ORDER BY run DESC
