@@ -90,3 +90,4 @@ def test_complexity_scores_ordered():
         WHERE c.flag = true
         GROUP BY c.a, x.b
         ORDER BY run DESC
+        """
