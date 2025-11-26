@@ -91,3 +91,4 @@ def test_complexity_scores_ordered():
         GROUP BY c.a, x.b
         ORDER BY run DESC
         """
+    )
