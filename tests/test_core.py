@@ -92,3 +92,4 @@ def test_complexity_scores_ordered():
         ORDER BY run DESC
         """
     )
+    assert complex_query.complexity_score > simple.complexity_score
