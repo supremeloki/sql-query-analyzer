@@ -95,3 +95,4 @@ def test_complexity_scores_ordered():
     assert complex_query.complexity_score > simple.complexity_score
 
 
+def test_index_advisor_suggests_where_columns():
