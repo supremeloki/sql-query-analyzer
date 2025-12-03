@@ -98,3 +98,4 @@ def test_complexity_scores_ordered():
 def test_index_advisor_suggests_where_columns():
     advisor = IndexAdvisor(existing_indexes={"users": {"id"}})
     analysis = SqlQueryAnalyzer().analyze(
+        "SELECT name FROM users WHERE email = 'x' AND id = 5"
