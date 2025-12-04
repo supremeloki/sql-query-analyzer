@@ -100,3 +100,4 @@ def test_index_advisor_suggests_where_columns():
     analysis = SqlQueryAnalyzer().analyze(
         "SELECT name FROM users WHERE email = 'x' AND id = 5"
     )
+    suggestions = advisor.suggest(analysis)
