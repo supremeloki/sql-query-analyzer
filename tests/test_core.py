@@ -101,3 +101,5 @@ def test_index_advisor_suggests_where_columns():
         "SELECT name FROM users WHERE email = 'x' AND id = 5"
     )
     suggestions = advisor.suggest(analysis)
+    assert suggestions
+    first = suggestions[0]
