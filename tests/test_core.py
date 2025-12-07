@@ -104,3 +104,4 @@ def test_index_advisor_suggests_where_columns():
     assert suggestions
     first = suggestions[0]
     assert "email" in first.columns
+
