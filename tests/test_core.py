@@ -106,3 +106,4 @@ def test_index_advisor_suggests_where_columns():
     assert "email" in first.columns
 
 
+def test_index_advisor_silent_when_covered():
