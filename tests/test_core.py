@@ -110,3 +110,4 @@ def test_index_advisor_silent_when_covered():
     advisor = IndexAdvisor(existing_indexes={"users": {"email", "id"}})
     analysis = SqlQueryAnalyzer().analyze(
         "SELECT name FROM users WHERE email = 'x' AND id = 5"
+    )
