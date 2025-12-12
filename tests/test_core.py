@@ -112,3 +112,4 @@ def test_index_advisor_silent_when_covered():
         "SELECT name FROM users WHERE email = 'x' AND id = 5"
     )
     column_hints = [s for s in advisor.suggest(analysis) if s.columns != ("__review__",)]
+    assert column_hints == []
