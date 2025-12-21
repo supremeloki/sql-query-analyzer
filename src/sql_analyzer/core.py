@@ -97,3 +97,77 @@ class SqlQueryAnalyzer:
         for node in expression.find_all(exp.Table):
             name = node.name
             joined = node.find_ancestor(exp.Join) is not None
+            if name not in accesses:
+                accesses[name] = TableAccess(table=name, operation="read", joined=joined)
+            elif joined:
+                accesses[name] = TableAccess(table=name, operation="read", joined=True)
+        for node in expression.find_all(exp.Insert):
+            target = node.find(exp.Table)
+            if target is not None and target.name in accesses:
+                old = accesses[target.name]
+                accesses[target.name] = TableAccess(old.table, "write", old.joined)
+        if not accesses:
+            raise UnsupportedStatementError("no table references found")
+        return list(accesses.values())
+
+    @staticmethod
+    def _extract_limit(expression: exp.Expression) -> int | None:
+        limit_node = expression.find(exp.Limit)
+        if limit_node is None:
+            return None
+        literal = limit_node.find(exp.Literal)
+        if literal is None:
+            return None
+        try:
+            return int(str(literal.this))
+        except ValueError:
+            return None
+
+    @staticmethod
+    def _complexity(expression: exp.Expression) -> int:
+        score = 1
+        score += len(list(expression.find_all(exp.Join))) * 3
+        score += len(list(expression.find_all(exp.Subquery))) * 4
+        score += len(list(expression.find_all(exp.CTE))) * 2
+        score += 2 if expression.find(exp.Group) else 0
+        score += 1 if expression.find(exp.Order) else 0
+        score += len(list(expression.find_all(exp.Case))) * 2
+        score += len(list(expression.find_all(exp.Window)))
+        return score
+
+    @staticmethod
+    def _detect_risks(sql: str) -> tuple[str, ...]:
+        return tuple(name for name, pattern in RISK_PATTERNS if pattern.search(sql))
+
+
+@dataclass(frozen=True)
+class IndexSuggestion:
+    columns: tuple[str, ...]
+    reason: str
+
+
+class IndexAdvisor:
+    def __init__(self, existing_indexes: dict[str, set[str]] | None = None) -> None:
+        self._existing = {
+            table: {c.lower() for c in cols}
+            for table, cols in (existing_indexes or {}).items()
+        }
+
+    def suggest(self, analysis: QueryAnalysis) -> list[IndexSuggestion]:
+        suggestions: list[IndexSuggestion] = []
+        if not analysis.where_columns:
+            return suggestions
+        primary_table = analysis.tables[0].table if analysis.tables else "unknown"
+        already = self._existing.get(primary_table.lower(), set())
+        needed = [c for c in analysis.where_columns if c.lower() not in already]
+        if needed:
+            suggestions.append(IndexSuggestion(
+                columns=tuple(needed),
+                reason=f"WHERE filters on {needed} without covering index on {primary_table}",
+            ))
+        if analysis.complexity_score >= 10:
+            suggestions.append(IndexSuggestion(
+                columns=("__review__",),
+                reason=f"complexity score {analysis.complexity_score} warrants manual plan review",
+            ))
+        return suggestions
